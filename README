@@ -18,8 +18,8 @@ ShouldaDeferred is available as plugin:
 
 Basically, you are able to put an 'x' before any context or shoulda block. You 
 will see a "Deferred..." message in the console when running your tests. It 
-is supposed also to work for macros like should_render_template or
-should_respond_with, etc.
+is supposed to work for macros like should_render_template or
+should_respond_with, too.
 
 
 === Examples
