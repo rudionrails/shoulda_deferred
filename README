@@ -11,7 +11,7 @@ may not work with other versions.
 
 ShouldaDeferred is available as plugin:
 
-  script/plugin install 
+  script/plugin install git://github.com/rudionrails/shoulda_deferred.git
 
   
 == Usage
