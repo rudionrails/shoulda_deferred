@@ -3,8 +3,8 @@
 ShouldaDeferred is a take on a few shoulda extensions to defer context and 
 should blocks, like xshould and xcontext.
 
-NOTE: This plugin was tested and written against thoughtbot-shoulda 2.0.6 and
-may not work with other versions.
+NOTE: This plugin was tested and written for thoughtbot-shoulda 2.0.6 and
+may not work with other versions, yet.
 
 
 == Installation
@@ -16,10 +16,10 @@ ShouldaDeferred is available as plugin:
   
 == Usage
 
-Basically, you are able to put an 'x' before any context or shoulda block. You 
+Basically, you are able to put an 'x' before any context or should block. You 
 will see a "Deferred..." message in the console when running your tests. It 
 is supposed to work for macros like should_render_template or
-should_respond_with, too.
+should_respond_with, etc.,  too.
 
 
 === Examples
@@ -71,4 +71,3 @@ xshould_render_template :index
 
 
 Copyright (c) 2009 Rudolf Schmidt, released under the MIT license.
-
