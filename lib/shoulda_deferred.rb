@@ -7,7 +7,7 @@ module Rudionrails
     # * xcontext to defer a whole conext block
     # * xshould_... to defer any shoulda macro that does not take a block, 
     #   like should_respond_with(:success) => xshould_respond_with(:success)
-    # alias_method :xshould, :should_eventually
+
     def xshould ( name, &block ); send(:should_eventually, name, &block ); end
     
     def method_missing_with_xshould ( method, *args, &block )
