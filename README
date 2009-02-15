@@ -4,8 +4,6 @@ ShouldaDeferred is a take on a few shoulda extensions to defer context and
 should blocks, like xshould and xcontext.
 
 NOTE: You will need to have Shoulda installed before you can use this plugin.
-      ShouldaDeferred was tested and written for thoughtbot-shoulda 2.0.6 and may 
-      not work with other versions as it extends should and context behaviour.
 
 
 == Installation
