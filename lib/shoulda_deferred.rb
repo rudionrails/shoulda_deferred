@@ -1,8 +1,7 @@
 module Rudionrails
   module ShouldaDeferred
-    
-    mattr_accessor :shoulda_klass
-    self.shoulda_klass = defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda) ? Thoughtbot::Shoulda : Shoulda
+
+    KLASS_SCOPE = defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda) ? Thoughtbot::Shoulda : Shoulda
     
     # This lets you defer tests. 
     # You can either use:
@@ -30,7 +29,7 @@ module Rudionrails
       xcontext.build
     end
     
-    class DeferredContext < self.shoulda_klass::Context # :nodoc:
+    class DeferredContext < KLASS_SCOPE::Context # :nodoc:
       def should ( name, options = {}, &blk )
         self.should_eventuallys << { :name => name }
       end
