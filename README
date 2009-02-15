@@ -27,7 +27,7 @@ xshould 'do something awesome' do
   # assertions here
 end
 # is actually just calling the already existing should_eventually macro.
-=> DEFERRED: SomeController should defer the test.
+=> DEFERRED: SomeController should do something awesome.
 
 
 xcontext 'a deferred context' do
