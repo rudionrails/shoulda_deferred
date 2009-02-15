@@ -4,7 +4,7 @@ module Rudionrails
   end
 end
 
-if defined? ::Thoughtbot::Shoulda
+if defined?(Shoulda) || defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda)
   require File.dirname(__FILE__) + '/lib/shoulda_deferred'
 else
   $stderr.puts "Skipping ShouldaDeferred plugin. `gem install thoughtbot-shoulda` and try again."
