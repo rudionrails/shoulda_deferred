@@ -1,11 +1,14 @@
 module Rudionrails
   module ShouldaDeferred
-    VERSION = "0.0.1"
+    VERSION = "0.0.2"
   end
 end
 
-if defined?(Shoulda) || defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda)
-  require File.dirname(__FILE__) + '/lib/shoulda_deferred'
-else
+begin
+  require 'shoulda'
+  raise("could not find shoulda") unless defined?(Shoulda) || defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda)
+rescue
   $stderr.puts "Skipping ShouldaDeferred plugin. `gem install thoughtbot-shoulda` and try again."
+else
+  require File.dirname(__FILE__) + '/lib/shoulda_deferred'
 end
