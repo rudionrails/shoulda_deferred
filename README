@@ -15,10 +15,10 @@ ShouldaDeferred is available as plugin:
   
 == Usage
 
-Basically, you are able to put an 'x' before any context or should block. You 
-will see a "Deferred..." message in the console when running your tests. It 
-is supposed to work for macros like should_render_template or
-should_respond_with, etc.,  too.
+Basically, you are able to put an 'x' before any context or should block to
+postponeor delay a test. You will see a "Deferred..." message in the console 
+when running your tests. It is supposed to work for macros like 
+should_render_template or should_respond_with, etc.,  too.
 
 
 === Examples
