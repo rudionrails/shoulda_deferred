@@ -10,6 +10,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     should 'do something' do
       flunk "defer nested should block"
     end
+
+    xshould 'defer the test' do
+      flunk "defer"
+    end
     
     context 'with another subcontext' do
       should 'do something awesome' do
@@ -20,6 +24,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     xcontext 'with a deferred subcontext' do
       should 'make me happy' do
         flunk "defer, because of nested contexts"
+      end
+      
+      xshould 'defer the test' do
+        flunk "defer"
       end
       
       context 'and another one' do
