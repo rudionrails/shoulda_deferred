@@ -10,7 +10,7 @@ module Rudionrails
     # * xshould_... to defer any shoulda macro that does not take a block, 
     #   like should_respond_with(:success) => xshould_respond_with(:success)
 
-    def xshould ( name, &blk ); send(:should_eventually, name, &blk ); end
+    def xshould ( name, &blk ); send( :should_eventually, name ); end
     
     # that's for:
     # * xshould_respond_with :success
@@ -38,7 +38,7 @@ module Rudionrails
     
     # add xshould, xcontext and xshould_... methods to Shoulda Context class
     class Shoulda::Context
-      def xshould ( name, &blk ); send(:should_eventually, name, &blk ); end
+      def xshould ( name, &blk ); send( :should_eventually, name ); end
       
       def method_missing_with_xshould ( method, *args, &blk )
         # don't do it if it's not starting with xshould
