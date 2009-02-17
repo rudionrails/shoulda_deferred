@@ -12,6 +12,9 @@ module Rudionrails
 
     def xshould ( name, &blk ); send(:should_eventually, name, &blk ); end
     
+    # that's for:
+    # * xshould_respond_with :success
+    # * xshould_...
     def method_missing_with_xshould ( method, *args, &blk )
       # don't do it if it's not starting with xshould
       unless method.to_s.index('xshould') == 0
