@@ -1,8 +1,8 @@
-module Rudionrails
-  module ShouldaDeferred
+# defined Shoulda (pre v2.9.1)
+Shoulda = Thoughtbot::Shoulda unless defined?( Shoulda )
 
-    KLASS_SCOPE = defined?(::Thoughtbot) && defined?(::Thoughtbot::Shoulda) ? ::Thoughtbot::Shoulda : ::Shoulda
-    
+module Rudionrails
+  module ShouldaDeferred    
     # This lets you defer tests. 
     # You can either use:
     # * xshould to defer any should block
@@ -28,15 +28,16 @@ module Rudionrails
     
     # xcontext is used just like a regular context block
     def xcontext (name, &blk )
-      if KLASS_SCOPE.current_context
-        KLASS_SCOPE.current_context.context(name, &blk)
+      if Shoulda.current_context
+        Shoulda.current_context.context(name, &blk)
       else
         xcontext = DeferredContext.new(name, self, &blk)
         xcontext.build
       end
     end
-
-    class KLASS_SCOPE::Context
+    
+    # add xshould, xcontext and xshould_... methods to Shoulda Context class
+    class Shoulda::Context
       def xshould ( name, &blk ); send(:should_eventually, name, &blk ); end
       
       def method_missing_with_xshould ( method, *args, &blk )
@@ -55,12 +56,10 @@ module Rudionrails
       end
     end
     
-    class DeferredContext < KLASS_SCOPE::Context # :nodoc:
-      alias_method :should, :xshould
-      
-      def context ( name, &blk )
-        self.subcontexts << DeferredContext.new(name, self, &blk)
-      end   
+    # any should and context will be deferred now
+    class DeferredContext < Shoulda::Context # :nodoc:      
+      alias_method :should,  :xshould
+      alias_method :context, :xcontext
     end
     
   end

@@ -1,7 +1,10 @@
 require File.dirname(__FILE__) + '/test_helper'
 
 class ShouldaDeferredTest < Test::Unit::TestCase
-
+  
+  xshould_respond_with :success
+  xshould_render_template :index
+  
   xshould 'defer the test' do
     flunk "defer"
   end
@@ -47,7 +50,7 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     end
 
     xcontext 'with a Deferred subcontext' do
-      should 'do something' do
+      xshould 'do something' do
         flunk 'defer'
       end
     end
@@ -55,8 +58,5 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     xshould_respond_with :success_in_context
     xshould_render_template :index_in_context
   end
-    
-  xshould_respond_with :success
-  xshould_render_template :index
 
 end
