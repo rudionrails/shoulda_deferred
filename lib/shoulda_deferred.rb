@@ -29,7 +29,7 @@ module Rudionrails
     # xcontext is used just like a regular context block
     def xcontext (name, &blk )
       if Shoulda.current_context
-        Shoulda.current_context.context(name, &blk)
+        Shoulda.current_context.xcontext(name, &blk)
       else
         xcontext = DeferredContext.new(name, self, &blk)
         xcontext.build
