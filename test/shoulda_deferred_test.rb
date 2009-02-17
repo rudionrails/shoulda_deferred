@@ -28,6 +28,9 @@ class ShouldaDeferredTest < Test::Unit::TestCase
         end
       end
     end
+    
+    xshould_respond_with :success
+    xshould_render_template :index
   end
 
   context 'a context' do
