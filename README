@@ -69,7 +69,7 @@ xshould_render_template :index
 ... and on and on and on and on...
 
 
-== Known Issuea
+== Known Issues
 At the moment, there is only one problem with a context which has a sub-xcontext in it. 
 It is working correctly on deferring the test itself, but the output in the console 
 is missing the parent context. Anyway, this will be looked at.
