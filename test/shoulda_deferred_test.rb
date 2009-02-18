@@ -8,12 +8,20 @@ class ShouldaDeferredTest < Test::Unit::TestCase
   xshould 'defer the test' do
     flunk "defer"
   end
-
+  
   xcontext 'A Deferred context' do
+    setup do
+      flunk 'defer setup'
+    end
+
+    teardown do
+      flunk 'defer teardown'
+    end
+    
     should 'do something' do
       flunk "defer nested should block"
     end
-
+    
     xshould 'defer the test' do
       flunk "defer"
     end
@@ -43,20 +51,28 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     xshould_respond_with :success_in_xcontext
     xshould_render_template :index_in_xcontext
   end
-
+  
   context 'A Regular context' do
     xshould 'defer the test' do
       flunk "defer!"
     end
-
+    
     xcontext 'with a Deferred subcontext' do
-      xshould 'do something' do
+      setup do
+        flunk 'defer setup'
+      end
+
+      teardown do
+        flunk 'defer teardown'
+      end
+      
+      should 'do something' do
         flunk 'defer'
       end
     end
-
+    
     xshould_respond_with :success_in_context
     xshould_render_template :index_in_context
   end
-
+  
 end
