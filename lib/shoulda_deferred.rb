@@ -1,8 +1,13 @@
+require 'shoulda'
+
 # defined Shoulda (pre v2.9.1)
 Shoulda = Thoughtbot::Shoulda unless defined?( Shoulda )
 
 module Rudionrails
-  module ShouldaDeferred    
+  module ShouldaDeferred
+    
+    VERSION = "0.0.4"
+    
     # This lets you defer tests. 
     # You can either use:
     # * xshould to defer any should block

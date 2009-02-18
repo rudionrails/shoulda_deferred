@@ -1,14 +1,7 @@
-module Rudionrails
-  module ShouldaDeferred
-    VERSION = "0.0.4"
-  end
-end
-
-begin
-  require 'shoulda'
-  raise("could not find shoulda") unless defined?(Shoulda) || defined?(Thoughtbot) && defined?(Thoughtbot::Shoulda)
-rescue
-  $stderr.puts "Skipping ShouldaDeferred plugin. `gem install thoughtbot-shoulda` and try again."
-else
-  require File.dirname(__FILE__) + '/lib/shoulda_deferred'
-end
+# Placeholder to satisfy Rails.
+#
+# Do NOT add any require statements to this file. Doing
+# so will cause Rails to load this plugin all the time.
+#
+# You will need to manually require 'shoulda_deferred'
+# in your test_helper.
