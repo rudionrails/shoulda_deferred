@@ -73,6 +73,10 @@ module Rudionrails
       # anything in a context will be deferred
       alias_method :should,  :xshould
       alias_method :context, :xcontext
+      
+      def am_subcontext?
+        parent.is_a?(self.class) || parent.is_a?(Shoulda::Context)
+      end
     end
     
   end
