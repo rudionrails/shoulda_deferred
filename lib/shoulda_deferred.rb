@@ -6,7 +6,7 @@ Shoulda = Thoughtbot::Shoulda unless defined?( Shoulda )
 module Rudionrails
   module ShouldaDeferred
     
-    VERSION = "0.0.4"
+    VERSION = "0.0.5"
     
     # This lets you defer tests. 
     # You can either use:

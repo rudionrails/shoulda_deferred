@@ -12,13 +12,19 @@ ShouldaDeferred is available as plugin:
 
   script/plugin install git://github.com/rudionrails/shoulda_deferred.git
 
+
   
 == Usage
 
-Basically, you are able to put an 'x' before any context or should block to
-postponeor delay a test. You will see a "Deferred..." message in the console 
-when running your tests. It is supposed to work for macros like 
-should_render_template or should_respond_with, etc.,  too.
+Enable this plugin by requiring shoulda_deferred in your test_helper, like so:
+# in test/test_helper.rb
+require 'shoulda_deferred'
+
+
+Then, you are able to put an 'x' before any context or should block to
+postpone or delay a test. You will see a "* DEFERRED: ..." message in the 
+console when running your tests. It is supposed to work for macros like 
+should_render_template or should_respond_with, etc., too.
 
 
 === Examples
