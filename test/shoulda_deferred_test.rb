@@ -2,8 +2,7 @@ require File.dirname(__FILE__) + '/test_helper'
 
 class ShouldaDeferredTest < Test::Unit::TestCase
   
-  xshould_respond_with :success
-  xshould_render_template :index
+  xshould_change ['my', 'array']
   
   xshould 'defer the test' do
     flunk "defer"
@@ -48,8 +47,8 @@ class ShouldaDeferredTest < Test::Unit::TestCase
       end
     end
     
-    xshould_respond_with :success_in_xcontext
-    xshould_render_template :index_in_xcontext
+    xshould_change ['my', 'array']
+    should_change ['my', 'should',  'array']
   end
   
   context 'A Regular context' do
@@ -71,8 +70,7 @@ class ShouldaDeferredTest < Test::Unit::TestCase
       end
     end
     
-    xshould_respond_with :success_in_context
-    xshould_render_template :index_in_context
+    xshould_change ['my', 'array']
   end
   
 end

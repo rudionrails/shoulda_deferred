@@ -28,8 +28,11 @@ module Rudionrails
         return method_missing_without_xshould(method, *args, &blk) 
       end
       
-      name = method.to_s.sub('xshould_', '').split('_') + args
-      send( :should_eventually, name.join(' ') )
+      # send the method to a deferred context
+      context_name = self.name.gsub(/Test/, "")
+      xcontext( context_name ) do
+        send( "#{method.to_s}", *args, &blk )
+      end
     end
     alias_method_chain :method_missing, :xshould
     
@@ -55,8 +58,11 @@ module Rudionrails
           return method_missing_without_xshould(method, *args, &blk) 
         end
         
-        name = method.to_s.sub('xshould_', '').split('_') + args
-        send( :should_eventually, name.join(' ') )
+        # send the method to a deferred context, but let it look like it's "ourselves"
+        should_name = method.to_s.sub('x', '')
+        self.subcontexts << DeferredContext.new( self.name, self.parent) do
+          send( "#{should_name}", *args, &blk )
+        end
       end
       alias_method_chain :method_missing, :xshould
       
