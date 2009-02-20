@@ -12,64 +12,67 @@ ShouldaDeferred is available as plugin:
 
   script/plugin install git://github.com/rudionrails/shoulda_deferred.git
 
+You will need to manually require this plugin in your test helper. That is, 
+because otherwise it would get automatically loaded in every environment.
 
-Enable this plugin by requiring shoulda_deferred in your test_helper, like so:
 # in test/test_helper.rb
 require 'shoulda_deferred'
 
   
 == Usage
 
-Then, you are able to put an 'x' before any context or should block to
-postpone or delay a test. You will see a "* DEFERRED: ..." message in the 
-console when running your tests. It is supposed to work for macros like 
-should_render_template or should_respond_with, etc., too.
+You are able to put an 'x' before any shoulda macro or block in order to run it later. 
+
+xshould will postpone a single should statement. xcontext will delay that context and
+anything within the context block. You will see a " * DEFERRED... " message in the console
+for all deferred test. For xcontext, you will see a deferred message for all containing
+should blocks and subcontexts. This plugin also works for any other shoulda macro, like
+xshould_change, xshould_validate_presence_of, xshould_respond_with, etc.
 
 
 === Examples
 
 xshould 'do something awesome' do
-  # assertions here
+  flunk "defer"
 end
-# is actually just calling the already existing should_eventually macro.
-=> DEFERRED: SomeController should do something awesome.
-
+# => DEFERRED: SomeController should do something awesome.
 
 xcontext 'a deferred context' do
   should 'do something' do
-    assert true
+    flunk "defer"
   end
 end
-=> DEFERRED: a deferred context should do something.
-
+# => DEFERRED: a deferred context should do something.
 
 xcontext 'a deferred context' do
   context 'with another subcontext' do
     should 'do something awesome' do
-      assert true
+      flunk "defer"
     end
   end
 end
-=> DEFERRED: a deferred context with another subcontext should do something awesome.
+# => DEFERRED: a deferred context with another subcontext should do something awesome.
 
-
-xcontext 'a deferred context' do
+context 'a regular context' do
   xcontext 'with a deferred subcontext' do
     should 'make me happy' do
       assert true
     end
   end
-end
-=> DEFERRED: a deferred context with a deferred subcontext should make me happy.
 
+  should 'assert true' do
+    assert true # this will run!
+  end
+end
+# => DEFERRED: a regular context with a deferred subcontext should make me happy.
 
 xshould_respond_with :success
-=> DEFERRED: SomeController should respond with success. 
+# => DEFERRED: SomeController should respond with success. 
 
-
-xshould_render_template :index
-=> DEFERRED: ShouldaController should render template index.
-
+context 'a regular context' do
+  xshould_render_template :index
+end
+# => DEFERRED: a regular context should render template index.
 
 ... and on and on and on and on...
 
