@@ -15,9 +15,15 @@ module Rudionrails
     # * xshould_... to defer any shoulda macro that does not take a block, 
     #   like should_respond_with(:success) => xshould_respond_with(:success)
 
-    def xshould ( name, options = {}, &blk )
-      send( :should_eventually, name )
+    def xshould ( *args)
+      send( :should_eventually, *args )
     end
+    
+    # defer before_should blocks
+    # def xbefore_should(name, &blk)
+    #   xshould(name, :before => blk) { assert true }
+    # end
+    alias_method :xbefore_should, :xshould
     
     # that's for:
     # * xshould_respond_with :success
@@ -49,6 +55,8 @@ module Rudionrails
       def xshould ( name, options = {}, &blk )
         send( :should_eventually, name )
       end
+
+      alias_method :xbefore_should, :xshould
       
       def method_missing_with_xshould ( method, *args, &blk )
         # don't do it if it's not starting with xshould
@@ -75,10 +83,16 @@ module Rudionrails
       def setup ( &blk ); end # just a stub
       def teardown ( &blk ); end # just a stub
       
-      # anything in a context will be deferred
+      # anything in a xcontext will be deferred
       alias_method :should,  :xshould
       alias_method :context, :xcontext
       
+      # def before_should(name, &blk)
+      #   should(name, :before => blk) { assert true }
+      # end
+      
+      # need to override this method to take the DeferredContext 
+      # class into account, too
       def am_subcontext?
         parent.is_a?(self.class) || parent.is_a?(Shoulda::Context)
       end

@@ -7,6 +7,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
   xshould 'defer the test' do
     flunk "defer"
   end
+
+  xbefore_should "execute before setup" do
+    flunk "defer before_should"
+  end
   
   xcontext 'A Deferred context' do
     setup do
@@ -20,6 +24,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     should 'do something' do
       flunk "defer nested should block"
     end
+
+    before_should "not execute before setup" do
+      flunk "defer before_should"
+    end
     
     xshould 'defer the test' do
       flunk "defer"
@@ -28,6 +36,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
     context 'with another subcontext' do
       should 'do something awesome' do
         flunk "defer, because of nested context"
+      end
+      
+      xbefore_should "execute before setup" do
+        flunk "defer before_should"
       end
     end
     
@@ -54,6 +66,10 @@ class ShouldaDeferredTest < Test::Unit::TestCase
   context 'A Regular context' do
     xshould 'defer the test' do
       flunk "defer!"
+    end
+
+    xbefore_should "execute before setup" do
+      flunk "defer before_should"
     end
     
     xcontext 'with a Deferred subcontext' do
