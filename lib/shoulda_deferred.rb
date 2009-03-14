@@ -6,7 +6,7 @@ Shoulda = Thoughtbot::Shoulda unless defined?( Shoulda )
 module Rudionrails
   module ShouldaDeferred
     
-    VERSION = "0.2.0"
+    VERSION = "0.2.1"
     
     # This lets you defer tests. 
     # You can either use:
@@ -15,7 +15,7 @@ module Rudionrails
     # * xshould_... to defer any shoulda macro that does not take a block, 
     #   like should_respond_with(:success) => xshould_respond_with(:success)
 
-    def xshould ( *args)
+    def xshould ( *args )
       send( :should_eventually, *args )
     end
     
